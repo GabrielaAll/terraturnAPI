@@ -1,0 +1,1642 @@
+{
+    "projeto": "TerraTurn - Motor de Rotação Agronômica",
+    "versao": "3.0.0-completa",
+    "descricao": "Base de dados e regras de harmonização agronômica oficial para integração multi-fonte (USDA CSB, EuroCrops v2.0, MapBiomas Coleção 10).",
+    "parametros_metricas_ml": {
+        "descricao_features": "Métricas calculadas por talhão/pixel na série temporal",
+        "indicadores": [
+            "Sequência completa de culturas (ex: soja>milho>soja)",
+            "Número de culturas distintas e índice de diversidade de Shannon",
+            "Proporção de monocultura e proporção de cereais/leguminosas",
+            "Contagem de anos de safra dupla e anos de pousio",
+            "Dataset de Machine Learning com variáveis de lag (t-1 até t-k) e contagem de monocultura recente"
+        ]
+    },
+    "legenda_comum": [
+        {
+            "cultura": "milho",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "trigo",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "cevada",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "aveia",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "centeio",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "triticale",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "arroz",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "sorgo",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "milheto",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "outros_cereais",
+            "grupo": "cereal",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "soja",
+            "grupo": "leguminosa_grao",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "feijao",
+            "grupo": "leguminosa_grao",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "ervilha",
+            "grupo": "leguminosa_grao",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "lentilha",
+            "grupo": "leguminosa_grao",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "grao_de_bico",
+            "grupo": "leguminosa_grao",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "amendoim",
+            "grupo": "leguminosa_grao",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "outras_leguminosas_graos",
+            "grupo": "leguminosa_grao",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "girassol",
+            "grupo": "oleaginosa",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "canola_colza",
+            "grupo": "oleaginosa",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "linho",
+            "grupo": "oleaginosa",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "outras_oleaginosas",
+            "grupo": "oleaginosa",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "batata",
+            "grupo": "raiz_tuberculo",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "batata_doce",
+            "grupo": "raiz_tuberculo",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "beterraba_acucareira",
+            "grupo": "raiz_tuberculo",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "algodao",
+            "grupo": "industrial",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "cana_de_acucar",
+            "grupo": "industrial",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "tabaco",
+            "grupo": "industrial",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "lupulo",
+            "grupo": "industrial",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "outras_industriais",
+            "grupo": "industrial",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "alfafa",
+            "grupo": "forrageira",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "forrageiras_leguminosas",
+            "grupo": "forrageira",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "pastagem_temporaria_feno",
+            "grupo": "forrageira",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "hortalicas",
+            "grupo": "hortalica",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "pousio",
+            "grupo": "pousio",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "outras_temporarias",
+            "grupo": "outra_temporaria",
+            "lavoura_temporaria": true
+        },
+        {
+            "cultura": "fruticultura",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "citros",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "vinhedos",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "oliveiras",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "nozes_castanhas",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "frutas_vermelhas",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "cafe",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "dende",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "outras_perenes",
+            "grupo": "perene",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "pastagem_campo",
+            "grupo": "pastagem",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "silvicultura",
+            "grupo": "silvicultura",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "nao_agricola",
+            "grupo": "nao_agricola",
+            "lavoura_temporaria": false
+        },
+        {
+            "cultura": "desconhecido",
+            "grupo": "desconhecido",
+            "lavoura_temporaria": false
+        }
+    ],
+    "conversoes": {
+        "usda_cdl": [
+            {
+                "codigo_cdl": 0,
+                "nome_original": "Background",
+                "cultura": "desconhecido",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 1,
+                "nome_original": "Corn",
+                "cultura": "milho",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 2,
+                "nome_original": "Cotton",
+                "cultura": "algodao",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 3,
+                "nome_original": "Rice",
+                "cultura": "arroz",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 4,
+                "nome_original": "Sorghum",
+                "cultura": "sorgo",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 5,
+                "nome_original": "Soybeans",
+                "cultura": "soja",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 6,
+                "nome_original": "Sunflower",
+                "cultura": "girassol",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 10,
+                "nome_original": "Peanuts",
+                "cultura": "amendoim",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 11,
+                "nome_original": "Tobacco",
+                "cultura": "tabaco",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 12,
+                "nome_original": "Sweet Corn",
+                "cultura": "milho",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 13,
+                "nome_original": "Pop or Orn Corn",
+                "cultura": "milho",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 14,
+                "nome_original": "Mint",
+                "cultura": "outras_industriais",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 21,
+                "nome_original": "Barley",
+                "cultura": "cevada",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 22,
+                "nome_original": "Durum Wheat",
+                "cultura": "trigo",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 23,
+                "nome_original": "Spring Wheat",
+                "cultura": "trigo",
+                "cultura_2": null,
+                "estacao": "primavera"
+            },
+            {
+                "codigo_cdl": 24,
+                "nome_original": "Winter Wheat",
+                "cultura": "trigo",
+                "cultura_2": null,
+                "estacao": "inverno"
+            },
+            {
+                "codigo_cdl": 25,
+                "nome_original": "Other Small Grains",
+                "cultura": "outros_cereais",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 26,
+                "nome_original": "Dbl Crop WinWht/Soybeans",
+                "cultura": "trigo",
+                "cultura_2": "soja",
+                "estacao": "inverno"
+            },
+            {
+                "codigo_cdl": 27,
+                "nome_original": "Rye",
+                "cultura": "centeio",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 28,
+                "nome_original": "Oats",
+                "cultura": "aveia",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 29,
+                "nome_original": "Millet",
+                "cultura": "milheto",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 30,
+                "nome_original": "Speltz",
+                "cultura": "trigo",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 31,
+                "nome_original": "Canola",
+                "cultura": "canola_colza",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 32,
+                "nome_original": "Flaxseed",
+                "cultura": "linho",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 33,
+                "nome_original": "Safflower",
+                "cultura": "outras_oleaginosas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 34,
+                "nome_original": "Rape Seed",
+                "cultura": "canola_colza",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 35,
+                "nome_original": "Mustard",
+                "cultura": "outras_oleaginosas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 36,
+                "nome_original": "Alfalfa",
+                "cultura": "alfafa",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 37,
+                "nome_original": "Other Hay/Non Alfalfa",
+                "cultura": "pastagem_temporaria_feno",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 38,
+                "nome_original": "Camelina",
+                "cultura": "outras_oleaginosas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 39,
+                "nome_original": "Buckwheat",
+                "cultura": "outros_cereais",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 41,
+                "nome_original": "Sugarbeets",
+                "cultura": "beterraba_acucareira",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 42,
+                "nome_original": "Dry Beans",
+                "cultura": "feijao",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 43,
+                "nome_original": "Potatoes",
+                "cultura": "batata",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 44,
+                "nome_original": "Other Crops",
+                "cultura": "outras_temporarias",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 45,
+                "nome_original": "Sugarcane",
+                "cultura": "cana_de_acucar",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 46,
+                "nome_original": "Sweet Potatoes",
+                "cultura": "batata_doce",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 47,
+                "nome_original": "Misc Vegs & Fruits",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 48,
+                "nome_original": "Watermelons",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 49,
+                "nome_original": "Onions",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 50,
+                "nome_original": "Cucumbers",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 51,
+                "nome_original": "Chick Peas",
+                "cultura": "grao_de_bico",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 52,
+                "nome_original": "Lentils",
+                "cultura": "lentilha",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 53,
+                "nome_original": "Peas",
+                "cultura": "ervilha",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 54,
+                "nome_original": "Tomatoes",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 55,
+                "nome_original": "Caneberries",
+                "cultura": "frutas_vermelhas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 56,
+                "nome_original": "Hops",
+                "cultura": "lupulo",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 57,
+                "nome_original": "Herbs",
+                "cultura": "outras_industriais",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 58,
+                "nome_original": "Clover/Wildflowers",
+                "cultura": "forrageiras_leguminosas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 59,
+                "nome_original": "Sod/Grass Seed",
+                "cultura": "pastagem_temporaria_feno",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 60,
+                "nome_original": "Switchgrass",
+                "cultura": "outras_industriais",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 61,
+                "nome_original": "Fallow/Idle Cropland",
+                "cultura": "pousio",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 63,
+                "nome_original": "Forest",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 64,
+                "nome_original": "Shrubland",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 65,
+                "nome_original": "Barren",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 66,
+                "nome_original": "Cherries",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 67,
+                "nome_original": "Peaches",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 68,
+                "nome_original": "Apples",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 69,
+                "nome_original": "Grapes",
+                "cultura": "vinhedos",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 70,
+                "nome_original": "Christmas Trees",
+                "cultura": "silvicultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 71,
+                "nome_original": "Other Tree Crops",
+                "cultura": "outras_perenes",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 72,
+                "nome_original": "Citrus",
+                "cultura": "citros",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 74,
+                "nome_original": "Pecans",
+                "cultura": "nozes_castanhas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 75,
+                "nome_original": "Almonds",
+                "cultura": "nozes_castanhas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 76,
+                "nome_original": "Walnuts",
+                "cultura": "nozes_castanhas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 77,
+                "nome_original": "Pears",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 81,
+                "nome_original": "Clouds/No Data",
+                "cultura": "desconhecido",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 82,
+                "nome_original": "Developed",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 83,
+                "nome_original": "Water",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 87,
+                "nome_original": "Wetlands",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 88,
+                "nome_original": "Nonag/Undefined",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 92,
+                "nome_original": "Aquaculture",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 111,
+                "nome_original": "Open Water",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 112,
+                "nome_original": "Perennial Ice/Snow",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 121,
+                "nome_original": "Developed/Open Space",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 122,
+                "nome_original": "Developed/Low Intensity",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 123,
+                "nome_original": "Developed/Med Intensity",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 124,
+                "nome_original": "Developed/High Intensity",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 131,
+                "nome_original": "Barren",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 141,
+                "nome_original": "Deciduous Forest",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 142,
+                "nome_original": "Evergreen Forest",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 143,
+                "nome_original": "Mixed Forest",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 152,
+                "nome_original": "Shrubland",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 176,
+                "nome_original": "Grass/Pasture",
+                "cultura": "pastagem_campo",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 190,
+                "nome_original": "Woody Wetlands",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 195,
+                "nome_original": "Herbaceous Wetlands",
+                "cultura": "nao_agricola",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 204,
+                "nome_original": "Pistachios",
+                "cultura": "nozes_castanhas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 205,
+                "nome_original": "Triticale",
+                "cultura": "triticale",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 206,
+                "nome_original": "Carrots",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 207,
+                "nome_original": "Asparagus",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 208,
+                "nome_original": "Garlic",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 209,
+                "nome_original": "Cantaloupes",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 210,
+                "nome_original": "Prunes",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 211,
+                "nome_original": "Olives",
+                "cultura": "oliveiras",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 212,
+                "nome_original": "Oranges",
+                "cultura": "citros",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 213,
+                "nome_original": "Honeydew Melons",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 214,
+                "nome_original": "Broccoli",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 215,
+                "nome_original": "Avocados",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 216,
+                "nome_original": "Peppers",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 217,
+                "nome_original": "Pomegranates",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 218,
+                "nome_original": "Nectarines",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 219,
+                "nome_original": "Greens",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 220,
+                "nome_original": "Plums",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 221,
+                "nome_original": "Strawberries",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 222,
+                "nome_original": "Squash",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 223,
+                "nome_original": "Apricots",
+                "cultura": "fruticultura",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 224,
+                "nome_original": "Vetch",
+                "cultura": "forrageiras_leguminosas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 225,
+                "nome_original": "Dbl Crop WinWht/Corn",
+                "cultura": "trigo",
+                "cultura_2": "milho",
+                "estacao": "inverno"
+            },
+            {
+                "codigo_cdl": 226,
+                "nome_original": "Dbl Crop Oats/Corn",
+                "cultura": "aveia",
+                "cultura_2": "milho",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 227,
+                "nome_original": "Lettuce",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 228,
+                "nome_original": "Dbl Crop Triticale/Corn",
+                "cultura": "triticale",
+                "cultura_2": "milho",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 229,
+                "nome_original": "Pumpkins",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 230,
+                "nome_original": "Dbl Crop Lettuce/Durum Wht",
+                "cultura": "hortalicas",
+                "cultura_2": "trigo",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 231,
+                "nome_original": "Dbl Crop Lettuce/Cantaloupe",
+                "cultura": "hortalicas",
+                "cultura_2": "hortalicas",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 232,
+                "nome_original": "Dbl Crop Lettuce/Cotton",
+                "cultura": "hortalicas",
+                "cultura_2": "algodao",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 233,
+                "nome_original": "Dbl Crop Lettuce/Barley",
+                "cultura": "hortalicas",
+                "cultura_2": "cevada",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 234,
+                "nome_original": "Dbl Crop Durum Wht/Sorghum",
+                "cultura": "trigo",
+                "cultura_2": "sorgo",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 235,
+                "nome_original": "Dbl Crop Barley/Sorghum",
+                "cultura": "cevada",
+                "cultura_2": "sorgo",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 236,
+                "nome_original": "Dbl Crop WinWht/Sorghum",
+                "cultura": "trigo",
+                "cultura_2": "sorgo",
+                "estacao": "inverno"
+            },
+            {
+                "codigo_cdl": 237,
+                "nome_original": "Dbl Crop Barley/Corn",
+                "cultura": "cevada",
+                "cultura_2": "milho",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 238,
+                "nome_original": "Dbl Crop WinWht/Cotton",
+                "cultura": "trigo",
+                "cultura_2": "algodao",
+                "estacao": "inverno"
+            },
+            {
+                "codigo_cdl": 239,
+                "nome_original": "Dbl Crop Soybeans/Cotton",
+                "cultura": "soja",
+                "cultura_2": "algodao",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 240,
+                "nome_original": "Dbl Crop Soybeans/Oats",
+                "cultura": "soja",
+                "cultura_2": "aveia",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 241,
+                "nome_original": "Dbl Crop Corn/Soybeans",
+                "cultura": "milho",
+                "cultura_2": "soja",
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 242,
+                "nome_original": "Blueberries",
+                "cultura": "frutas_vermelhas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 243,
+                "nome_original": "Cabbage",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 244,
+                "nome_original": "Cauliflower",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 245,
+                "nome_original": "Celery",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 246,
+                "nome_original": "Radishes",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 247,
+                "nome_original": "Turnips",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 248,
+                "nome_original": "Eggplants",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 249,
+                "nome_original": "Gourds",
+                "cultura": "hortalicas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 250,
+                "nome_original": "Cranberries",
+                "cultura": "frutas_vermelhas",
+                "cultura_2": null,
+                "estacao": null
+            },
+            {
+                "codigo_cdl": 254,
+                "nome_original": "Dbl Crop Barley/Soybeans",
+                "cultura": "cevada",
+                "cultura_2": "soja",
+                "estacao": null
+            }
+        ],
+        "mapbiomas_colecao10": [
+            {
+                "codigo_mapbiomas": 0,
+                "nome_original": "Não observado",
+                "cultura": "desconhecido"
+            },
+            {
+                "codigo_mapbiomas": 1,
+                "nome_original": "Floresta",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 3,
+                "nome_original": "Formação Florestal",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 4,
+                "nome_original": "Formação Savânica",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 5,
+                "nome_original": "Mangue",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 6,
+                "nome_original": "Floresta Alagável",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 9,
+                "nome_original": "Silvicultura",
+                "cultura": "silvicultura"
+            },
+            {
+                "codigo_mapbiomas": 10,
+                "nome_original": "Vegetação Herbácea e Arbustiva",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 11,
+                "nome_original": "Campo Alagado e Área Pantanosa",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 12,
+                "nome_original": "Formação Campestre",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 13,
+                "nome_original": "Outras Formações não Florestais",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 14,
+                "nome_original": "Agropecuária",
+                "cultura": "desconhecido"
+            },
+            {
+                "codigo_mapbiomas": 15,
+                "nome_original": "Pastagem",
+                "cultura": "pastagem_campo"
+            },
+            {
+                "codigo_mapbiomas": 18,
+                "nome_original": "Agricultura",
+                "cultura": "outras_temporarias"
+            },
+            {
+                "codigo_mapbiomas": 19,
+                "nome_original": "Lavoura Temporária",
+                "cultura": "outras_temporarias"
+            },
+            {
+                "codigo_mapbiomas": 20,
+                "nome_original": "Cana",
+                "cultura": "cana_de_acucar"
+            },
+            {
+                "codigo_mapbiomas": 21,
+                "nome_original": "Mosaico de Usos",
+                "cultura": "desconhecido"
+            },
+            {
+                "codigo_mapbiomas": 22,
+                "nome_original": "Área não Vegetada",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 23,
+                "nome_original": "Praia, Duna e Areal",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 24,
+                "nome_original": "Área Urbanizada",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 25,
+                "nome_original": "Outras Áreas não Vegetadas",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 26,
+                "nome_original": "Corpo D'água",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 29,
+                "nome_original": "Afloramento Rochoso",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 30,
+                "nome_original": "Mineração",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 31,
+                "nome_original": "Aquicultura",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 32,
+                "nome_original": "Apicum",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 33,
+                "nome_original": "Rio, Lago e Oceano",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 35,
+                "nome_original": "Dendê",
+                "cultura": "dende"
+            },
+            {
+                "codigo_mapbiomas": 36,
+                "nome_original": "Lavoura Perene",
+                "cultura": "outras_perenes"
+            },
+            {
+                "codigo_mapbiomas": 39,
+                "nome_original": "Soja",
+                "cultura": "soja"
+            },
+            {
+                "codigo_mapbiomas": 40,
+                "nome_original": "Arroz",
+                "cultura": "arroz"
+            },
+            {
+                "codigo_mapbiomas": 41,
+                "nome_original": "Outras Lavouras Temporárias",
+                "cultura": "outras_temporarias"
+            },
+            {
+                "codigo_mapbiomas": 46,
+                "nome_original": "Café",
+                "cultura": "cafe"
+            },
+            {
+                "codigo_mapbiomas": 47,
+                "nome_original": "Citrus",
+                "cultura": "citros"
+            },
+            {
+                "codigo_mapbiomas": 48,
+                "nome_original": "Outras Lavouras Perenes",
+                "cultura": "outras_perenes"
+            },
+            {
+                "codigo_mapbiomas": 49,
+                "nome_original": "Restinga Arbórea",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 50,
+                "nome_original": "Restinga Herbácea",
+                "cultura": "nao_agricola"
+            },
+            {
+                "codigo_mapbiomas": 62,
+                "nome_original": "Algodão (beta)",
+                "cultura": "algodao"
+            },
+            {
+                "codigo_mapbiomas": 75,
+                "nome_original": "Usina Fotovoltaica (beta)",
+                "cultura": "nao_agricola"
+            }
+        ],
+        "eurocrops_hcat4": [
+            {
+                "prefixo_codigo": "3310101",
+                "cultura_mapeada": "trigo"
+            },
+            {
+                "prefixo_codigo": "3310102",
+                "cultura_mapeada": "trigo"
+            },
+            {
+                "prefixo_codigo": "3310103",
+                "cultura_mapeada": "centeio"
+            },
+            {
+                "prefixo_codigo": "3310104",
+                "cultura_mapeada": "cevada"
+            },
+            {
+                "prefixo_codigo": "3310105",
+                "cultura_mapeada": "aveia"
+            },
+            {
+                "prefixo_codigo": "3310106",
+                "cultura_mapeada": "milho"
+            },
+            {
+                "prefixo_codigo": "3310107",
+                "cultura_mapeada": "arroz"
+            },
+            {
+                "prefixo_codigo": "3310108",
+                "cultura_mapeada": "triticale"
+            },
+            {
+                "prefixo_codigo": "3310109",
+                "cultura_mapeada": "milheto"
+            },
+            {
+                "prefixo_codigo": "3310110",
+                "cultura_mapeada": "trigo"
+            },
+            {
+                "prefixo_codigo": "3310111",
+                "cultura_mapeada": "outros_cereais"
+            },
+            {
+                "prefixo_codigo": "3310112",
+                "cultura_mapeada": "trigo"
+            },
+            {
+                "prefixo_codigo": "3310113",
+                "cultura_mapeada": "trigo"
+            },
+            {
+                "prefixo_codigo": "3310115",
+                "cultura_mapeada": "outros_cereais"
+            },
+            {
+                "prefixo_codigo": "3310116",
+                "cultura_mapeada": "sorgo"
+            },
+            {
+                "prefixo_codigo": "33101",
+                "cultura_mapeada": "outros_cereais"
+            },
+            {
+                "prefixo_codigo": "331020101",
+                "cultura_mapeada": "feijao"
+            },
+            {
+                "prefixo_codigo": "331020102",
+                "cultura_mapeada": "amendoim"
+            },
+            {
+                "prefixo_codigo": "331020103",
+                "cultura_mapeada": "soja"
+            },
+            {
+                "prefixo_codigo": "331020104",
+                "cultura_mapeada": "grao_de_bico"
+            },
+            {
+                "prefixo_codigo": "331020107",
+                "cultura_mapeada": "lentilha"
+            },
+            {
+                "prefixo_codigo": "331020108",
+                "cultura_mapeada": "ervilha"
+            },
+            {
+                "prefixo_codigo": "3310201",
+                "cultura_mapeada": "outras_leguminosas_graos"
+            },
+            {
+                "prefixo_codigo": "331020201",
+                "cultura_mapeada": "alfafa"
+            },
+            {
+                "prefixo_codigo": "3310202",
+                "cultura_mapeada": "forrageiras_leguminosas"
+            },
+            {
+                "prefixo_codigo": "33102",
+                "cultura_mapeada": "outras_leguminosas_graos"
+            },
+            {
+                "prefixo_codigo": "33103",
+                "cultura_mapeada": "batata"
+            },
+            {
+                "prefixo_codigo": "33104",
+                "cultura_mapeada": "batata_doce"
+            },
+            {
+                "prefixo_codigo": "3310601",
+                "cultura_mapeada": "tabaco"
+            },
+            {
+                "prefixo_codigo": "3310602",
+                "cultura_mapeada": "lupulo"
+            },
+            {
+                "prefixo_codigo": "3310603",
+                "cultura_mapeada": "algodao"
+            },
+            {
+                "prefixo_codigo": "331060401",
+                "cultura_mapeada": "canola_colza"
+            },
+            {
+                "prefixo_codigo": "331060402",
+                "cultura_mapeada": "girassol"
+            },
+            {
+                "prefixo_codigo": "3310604",
+                "cultura_mapeada": "outras_oleaginosas"
+            },
+            {
+                "prefixo_codigo": "3310607",
+                "cultura_mapeada": "linho"
+            },
+            {
+                "prefixo_codigo": "3310615",
+                "cultura_mapeada": "outras_oleaginosas"
+            },
+            {
+                "prefixo_codigo": "33106",
+                "cultura_mapeada": "outras_industriais"
+            },
+            {
+                "prefixo_codigo": "331071901",
+                "cultura_mapeada": "beterraba_acucareira"
+            },
+            {
+                "prefixo_codigo": "331071902",
+                "cultura_mapeada": "outras_temporarias"
+            },
+            {
+                "prefixo_codigo": "33107",
+                "cultura_mapeada": "hortalicas"
+            },
+            {
+                "prefixo_codigo": "33108",
+                "cultura_mapeada": "outras_temporarias"
+            },
+            {
+                "prefixo_codigo": "33110",
+                "cultura_mapeada": "outras_temporarias"
+            },
+            {
+                "prefixo_codigo": "33111",
+                "cultura_mapeada": "pousio"
+            },
+            {
+                "prefixo_codigo": "33112",
+                "cultura_mapeada": "hortalicas"
+            },
+            {
+                "prefixo_codigo": "33113",
+                "cultura_mapeada": "outras_temporarias"
+            },
+            {
+                "prefixo_codigo": "33199",
+                "cultura_mapeada": "outras_temporarias"
+            },
+            {
+                "prefixo_codigo": "3310000000",
+                "cultura_mapeada": "outras_temporarias"
+            },
+            {
+                "prefixo_codigo": "33202",
+                "cultura_mapeada": "pastagem_temporaria_feno"
+            },
+            {
+                "prefixo_codigo": "3320",
+                "cultura_mapeada": "pastagem_campo"
+            },
+            {
+                "prefixo_codigo": "33301",
+                "cultura_mapeada": "fruticultura"
+            },
+            {
+                "prefixo_codigo": "33302",
+                "cultura_mapeada": "frutas_vermelhas"
+            },
+            {
+                "prefixo_codigo": "33303",
+                "cultura_mapeada": "nozes_castanhas"
+            },
+            {
+                "prefixo_codigo": "33304",
+                "cultura_mapeada": "citros"
+            },
+            {
+                "prefixo_codigo": "33305",
+                "cultura_mapeada": "oliveiras"
+            },
+            {
+                "prefixo_codigo": "33306",
+                "cultura_mapeada": "vinhedos"
+            },
+            {
+                "prefixo_codigo": "333",
+                "cultura_mapeada": "outras_perenes"
+            },
+            {
+                "prefixo_codigo": "334",
+                "cultura_mapeada": "outras_perenes"
+            },
+            {
+                "prefixo_codigo": "335",
+                "cultura_mapeada": "outras_temporarias"
+            },
+            {
+                "prefixo_codigo": "336",
+                "cultura_mapeada": "silvicultura"
+            },
+            {
+                "prefixo_codigo": "337",
+                "cultura_mapeada": "nao_agricola"
+            },
+            {
+                "prefixo_codigo": "339",
+                "cultura_mapeada": "desconhecido"
+            }
+        ]
+    }
+}

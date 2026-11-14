@@ -1,0 +1,27 @@
+# Ambientes virtuais
+.venv/
+venv/
+ENV/
+
+# Arquivos sensíveis e de configuração local
+.env
+
+# Banco de dados local de desenvolvimento
+*.db
+*.sqlite3
+
+# Cache e compilados do Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.manifest
+*.spec
+
+# Pastas de dados brutos ou temporários locais
+dados/raw/
+dados/interim/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store
